@@ -26,7 +26,7 @@ module.exports = {
                 await interaction.reply('한국어로 변경되었습니다!');
             }
         } else {
-            await interaction.reply({ content: 'You need permissions to change language.', ephemeral: true });
+            await interaction.reply({ content: 'You need Administrator permission to change language.', ephemeral: true });
         }
 	},
 };
