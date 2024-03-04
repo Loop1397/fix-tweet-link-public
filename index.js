@@ -78,7 +78,7 @@ client.on(Events.MessageCreate, message => {
     const channel = client.channels.cache.get(message.channelId);
 
     if (message.content !== result) {
-        // message.delete();
+        message.delete();
         channel.send(message.author.toString() + localizing.getLocalizedString(message.guild.id) + result)
             .then(message => {
                 message.react(`❌`);
