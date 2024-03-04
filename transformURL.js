@@ -12,7 +12,7 @@ module.exports = (inputURL) => {
     if (inputURL.startsWith("https://x.com") || inputURL.startsWith("https://twitter.com")) {
         // 또한, URL에 "status"가 포함되어있을 경우 "https://vxtwitter.com~"으로 대체
         if(inputURL.indexOf('status') !== -1) {
-            inputURL = `[트윗](` + inputURL.replace(/^https:\/\/(x\.com|twitter\.com)/, "https://vxtwitter.com") + `)`;
+            inputURL = inputURL.replace(/^https:\/\/(x\.com|twitter\.com)/, "https://vxtwitter.com") + `)`;
         }
     }
 
