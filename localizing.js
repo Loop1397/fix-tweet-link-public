@@ -8,7 +8,8 @@ const serverLanguageConfig = JSON.parse(data);
 
 const output = {
     "ko" : " 님이 공유한 [트윗](",
-    "en" : " sent a [tweet]("
+    "en" : " shared a [tweet](",
+    "jp" : " さんが共有した[ツイート]("
 }
 
 module.exports = {
