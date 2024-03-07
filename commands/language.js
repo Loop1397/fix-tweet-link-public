@@ -16,10 +16,10 @@ module.exports = {
 	async execute(interaction) {
 		// Administrator권한이 필요함
         if(interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
-            const localizing = require('../localizing.js');
+            const localizing = require('../server-language.js');
             const selectedOption = interaction.options.getString('selected');
     
-            localizing.patchServerLanguage(interaction.guildId, selectedOption);
+            localizing.setServerLanguage(interaction.guildId, selectedOption);
     
             if(selectedOption === 'en') {
                 await interaction.reply('English selected!');

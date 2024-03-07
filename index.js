@@ -5,7 +5,6 @@ const { Client, Events, GatewayIntentBits, Partials, Collection } = require("dis
 require("dotenv").config();
 const path = require('path');
 const fs = require('fs');
-const localizing = require("./localizing.js");
 
 // bot token을 환경변수 설정으로 받아옴
 const token = process.env.BOT_TOKEN;
@@ -74,12 +73,12 @@ client.on(Events.InteractionCreate, async interaction => {
 client.on(Events.MessageCreate, message => {
     if (message.author.bot) return;
     
-    result = transformURL(message.content);
+    result = transformURL(message.content, message.guild.id);
     const channel = client.channels.cache.get(message.channelId);
 
     if (message.content !== result) {
         message.delete();
-        channel.send(message.author.toString() + localizing.getLocalizedString(message.guild.id) + result)
+        channel.send(message.author.toString() + result)
             .then(message => {
                 message.react(`❌`);
             });
