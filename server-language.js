@@ -9,7 +9,7 @@ const serverLanguageConfig = JSON.parse(data);
 module.exports = {
     // getter
     getServerLanguage(guildId) {
-        const result = serverLanguageConfig[guildId];
+        let result = serverLanguageConfig[guildId];
 
         // guildId의 언어 설정이 json파일에 입력되어 있다면 해당 언어 반환
         if (result !== undefined) {
