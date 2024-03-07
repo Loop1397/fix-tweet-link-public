@@ -16,7 +16,7 @@ module.exports = {
             return result;
         }
 
-        result = 'en'
+        result = 'en';
 
         //아닐 경우 기본 언어를 영어로하여 json파일에 저장 
         this.setServerLanguage(guildId, result);
