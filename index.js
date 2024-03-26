@@ -94,8 +94,10 @@ client.on(Events.MessageReactionAdd, reaction => {
     message
         .fetch()
         .then(async message => {
-            const reactionCount = message.reactions.cache.get(`❌`)?.count;
-            if (reactionCount >= 3 && message.author.bot) {
+            const messagedUser = message.mentions.users.first().id;
+            const reactedUser = interaction.user.id;
+
+            if (reaction.emoji.name === '❌' && messagedUser === reactedUser && message.author.bot) {
                 message.delete();
             }
         })
