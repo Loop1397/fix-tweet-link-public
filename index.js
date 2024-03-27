@@ -88,22 +88,27 @@ client.on(Events.MessageCreate, message => {
 /**
  * 리액션이 달렸을 때 실행되는 메소드
  */
-client.on(Events.MessageReactionAdd, reaction => {
-    // console.log(reaction);
-    message = reaction.message;
-    message
+client.on(Events.MessageReactionAdd, (reaction, user) => {
+    if (reaction.emoji.name === '❌') {
+        
+        message = reaction.message;
+        message
         .fetch()
         .then(async message => {
-            const messagedUser = message.mentions.users.first().id;
-            const reactedUser = interaction.user.id;
-
-            if (reaction.emoji.name === '❌' && messagedUser === reactedUser && message.author.bot) {
+            const messagedUser = await message.mentions.users.first()
+        
+            /**
+             * reaction을 쓰면 안되고 reaction.emoji.name을 써서 비교해야함
+             * custom reaction의 경우 reaction.emoji.id를 가져와서 비교
+             */
+            if (messagedUser === user && message.author.bot) {
                 message.delete();
             }
         })
-        .catch(e => {
-            console.error("Something went wrong when fetching the message: ", e);
+        .catch(error => {
+            console.error("Something went wrong when fetching the message: ", error);
         });
+    }
 });
 
 // 디스코드를 클라이언트의 토큰으로 로그인합니다.
