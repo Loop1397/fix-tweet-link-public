@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const language = require('./commands/language');
 const configPath = path.join(__dirname, 'server-language-config.json');
 
 const data = fs.readFileSync(configPath, 'utf8');
@@ -35,10 +34,3 @@ module.exports = {
         fs.writeFileSync(configPath, jsonData, 'utf8');
     }
 }
-
-
-/* 테스트용
-
-
-console.log(getLocalizedString('1051065667043999744'));
-*/
