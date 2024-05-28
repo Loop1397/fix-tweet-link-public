@@ -71,18 +71,23 @@ client.on(Events.InteractionCreate, async interaction => {
  * 메세지가 입력됐을 때 실행되는 메소드
  */
 client.on(Events.MessageCreate, message => {
-    if (message.author.bot) return;
+    try{
+        if (message.author.bot) return;
     
-    result = transformURL(message.content, message.guild.id);
-    const channel = client.channels.cache.get(message.channelId);
-
-    if (message.content !== result) {
-        message.delete();
-        channel.send(message.author.toString() + result)
-            .then(message => {
-                message.react(`❌`);
-            });
+        result = transformURL(message.content, message.guild.id);
+        const channel = client.channels.cache.get(message.channelId);
+    
+        if (message.content !== result) {
+            message.delete();
+            channel.send(message.author.toString() + result)
+                .then(message => {
+                    message.react(`❌`);
+                });
+        }
+    } catch(error) {
+        console.log(error);
     }
+    
 });
 
 /**
